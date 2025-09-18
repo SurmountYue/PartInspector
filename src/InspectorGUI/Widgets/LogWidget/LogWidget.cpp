@@ -48,7 +48,7 @@ void LogWidget::setupUi()
     m_logOutput->setReadOnly(true); // 设置为只读，用户不能手动编辑日志
 
     // b. 创建清空按钮
-    m_clearButton = new QPushButton(tr("Clear Log"), this);
+    m_clearButton = new QPushButton(QIcon(":/Icons/CLear Log.png"),tr("Clear Log"), this);
 
 
     // --- 2. 创建布局 ---

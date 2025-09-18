@@ -12,6 +12,7 @@
 #include <QVBoxLayout>     // 垂直布局
 #include <QHBoxLayout>     // 水平布局
 #include <QFormLayout>    // 表单布局，用于标签和输入框的对齐
+#include <QIcon>
 
 // --- 构造函数 ---
 CameraPanel::CameraPanel(QWidget *parent)
@@ -78,8 +79,8 @@ void CameraPanel::setupUi()
     m_deviceGroupBox = new QGroupBox(tr("Device Connection"), this);
 
     m_deviceComboBox = new QComboBox(this);
-    m_searchButton = new QPushButton(tr("Search"), this);
-    m_connectButton = new QPushButton(tr("Connect"), this);
+    m_searchButton = new QPushButton(QIcon(":/Icons/Search.png"),tr("Search"), this);
+    m_connectButton = new QPushButton(QIcon(":/Icons/Connect.png"),tr("Connect"), this);
     m_statusLabel = new QLabel(tr("Status: No Device"), this);
 
     QHBoxLayout* deviceTopLayout = new QHBoxLayout();
@@ -99,9 +100,10 @@ void CameraPanel::setupUi()
 
     // --- 3. 创建“采集控制”分组 ---
     m_acquisitionGroupBox = new QGroupBox(tr("Acquisition Control"), this);
-    m_singleShotButton = new QPushButton(tr("Single Shot"), this);
-    m_continuousShotButton = new QPushButton(tr("Continuous Shot"), this);
-    m_continuousShotButton->setCheckable(true); // 将此按钮设置为“可切换”状态（像开关一样）
+    m_singleShotButton = new QPushButton(QIcon(":/Icons/Single Shot.png"),tr("Single Shot"), this);
+    // 为连续采集按钮设置初始图标
+    m_continuousShotButton = new QPushButton(QIcon(":/Icons/StartGrab.png"), tr("Continuous Shot"), this);
+    m_continuousShotButton->setCheckable(true);
 
     QHBoxLayout* acquisitionLayout = new QHBoxLayout();
     acquisitionLayout->addStretch();
@@ -154,7 +156,20 @@ void CameraPanel::setupConnections()
             emit disconnectDeviceRequested();
         }
     });
-
+// 【修改点】为连续采集按钮添加状态切换逻辑
+    connect(m_continuousShotButton, &QPushButton::toggled, this, [this](bool checked){
+        if (checked) {
+            // 如果按钮被按下 (开始采集)
+            m_continuousShotButton->setText(tr("Stop"));
+            m_continuousShotButton->setIcon(QIcon(":/Icons/StopGrab.png"));
+        } else {
+            // 如果按钮弹起 (停止采集)
+            m_continuousShotButton->setText(tr("Continuous Shot"));
+            m_continuousShotButton->setIcon(QIcon(":/Icons/StratGrab.png"));
+        }
+        // 将状态改变的信号转发出去，给MainWindow处理
+        emit continuousShotToggled(checked);
+    });
     // --- b. 连接参数调节的信号与槽 ---
     // 将SpinBox的值变化信号，直接连接到我们自己的信号上
     connect(m_exposureSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &CameraPanel::exposureChanged);

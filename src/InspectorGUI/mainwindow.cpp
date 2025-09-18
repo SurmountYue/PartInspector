@@ -29,9 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     setupUi();          // 1. 创建和布局所有UI控件
     setupConnections(); // 2. 连接所有模块的信号和槽
 
-    // 设置窗口的初始大小和标题
+    // 设置窗口的初始大小、标题、图标
     resize(1280, 800);
     setWindowTitle(tr("Part Inspector Pro"));
+    setWindowIcon(QIcon(":/Icons/icon.png"));
 
     // 【关键】安装并启动我们的全局日志系统
     LogManager::Instance()->install();

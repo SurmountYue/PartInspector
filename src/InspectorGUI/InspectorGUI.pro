@@ -99,8 +99,11 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+#设置资源文件
 RESOURCES += \
     Resources/resources.qrc
 
-DISTFILES +=
+#设置翻译文件
 TRANSLATIONS += InspectorGUI_zh_CN.ts
+#设置图标
+RC_FILE = appicon.rc

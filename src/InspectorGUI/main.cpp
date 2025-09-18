@@ -20,12 +20,11 @@ int main(int argc, char *argv[])
 
     // --- 加载翻译文件 ---
     QTranslator translator;
-    // 我们假设您已经把 .qm 文件添加到了资源文件 .qrc 中，并放在了 Translations 目录下
+    // 修改后 (t小写):
     if (translator.load(":/translation/InspectorGUI_zh_CN.qm")) {
         a.installTranslator(&translator);
     } else {
-        // 如果加载失败，在控制台打印一个警告，方便调试
-        qWarning("Could not load translation file ':/Translations/InspectorGUI_zh_CN.qm'");
+        qWarning("Could not load translation file ':/translation/InspectorGUI_zh_CN.qm'");
     }
 
 

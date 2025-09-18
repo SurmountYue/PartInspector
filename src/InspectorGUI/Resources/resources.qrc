@@ -1,12 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>Icons/Connect.png</file>
-        <file>Icons/DisConnect.png</file>
-        <file>Icons/Enumeration.png</file>
-        <file>Icons/icon.png</file>
-        <file>Icons/StopGrab.png</file>
-        <file>Icons/StratGrab.png</file>
         <file>Styles/ModernDark.qss</file>
         <file>translation/InspectorGUI_zh_CN.qm</file>
+        <file>Icons/clear Log.png</file>
+        <file>Icons/Connect.png</file>
+        <file>Icons/Disconnect.png</file>
+        <file>Icons/icon.png</file>
+        <file>Icons/Inspect.png</file>
+        <file>Icons/Load Image.png</file>
+        <file>Icons/Search.png</file>
+        <file>Icons/Single Shot.png</file>
+        <file>Icons/StopGrab.png</file>
+        <file>Icons/StartGrab.png</file>
     </qresource>
 </RCC>

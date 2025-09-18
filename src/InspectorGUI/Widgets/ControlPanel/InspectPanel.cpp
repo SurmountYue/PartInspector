@@ -91,13 +91,13 @@ void InspectPanel::setupUi()
 {
     // --- 1. 创建所有UI控件的实例 ---
     // `this` 参数将当前 InspectPanel 对象设置为这些控件的父对象。
-    m_loadImageButton = new QPushButton(tr("Load Image"), this);
-    m_inspectButton = new QPushButton(tr("Inspect"), this);
+    m_loadImageButton = new QPushButton(QIcon(":/Icons/Load Image.png"),tr("Load Image"), this);
+    m_inspectButton = new QPushButton(QIcon(":/Icons/Inspect.png"),tr("Inspect"), this);
     m_resultsText = new QTextEdit(this);
 
-    // 从资源系统(:/)加载图标并设置给按钮
-    m_loadImageButton->setIcon(QIcon(":/Icons/load_image.png"));
-    m_inspectButton->setIcon(QIcon(":/Icons/inspect.png"));
+    // // 从资源系统(:/)加载图标并设置给按钮
+    // m_loadImageButton->setIcon(QIcon(":/Icons/Load Image.png"));
+    // m_inspectButton->setIcon(QIcon(":/Icons/Inspect.png"));
 
     // --- 2. 初始化控件状态 ---
     m_inspectButton->setEnabled(false); // 初始时，“执行测量”按钮是禁用的，因为还没有加载图片。
