@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Icons/Connect.png</file>
+        <file>Icons/DisConnect.png</file>
+        <file>Icons/Enumeration.png</file>
+        <file>Icons/icon.png</file>
+        <file>Icons/StopGrab.png</file>
+        <file>Icons/StratGrab.png</file>
+        <file>Styles/ModernDark.qss</file>
+    </qresource>
+</RCC>

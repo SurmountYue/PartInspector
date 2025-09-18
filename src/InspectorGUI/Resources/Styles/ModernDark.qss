@@ -1,0 +1,69 @@
+/* Resources/Styles/ModernDark.qss */
+
+/* === 全局窗口样式 === */
+QWidget {
+    background-color: #2E3440; /* 深灰蓝背景 */
+    color: #ECEFF4;            /* 浅灰色文字 */
+    font-family: "Segoe UI", "Microsoft YaHei"; /* 优先使用Segoe UI，中文用微软雅黑 */
+    font-size: 10pt;
+}
+
+/* === 主窗口样式 === */
+QMainWindow {
+    background-color: #3B4252; /* 稍亮一点的背景 */
+}
+
+/* === 按钮样式 === */
+QPushButton {
+    background-color: #4C566A;  /* 按钮背景色 */
+    border: 1px solid #5E81AC; /* 蓝色边框 */
+    border-radius: 4px;         /* 圆角 */
+    padding: 6px 12px;          /* 内边距 */
+    min-width: 80px;            /* 最小宽度 */
+}
+
+QPushButton:hover {
+    background-color: #5E81AC; /* 鼠标悬停时变亮蓝色 */
+    border: 1px solid #81A1C1;
+}
+
+QPushButton:pressed {
+    background-color: #81A1C1; /* 鼠标按下时更亮 */
+    border: 1px solid #88C0D0;
+}
+
+QPushButton:disabled {
+    background-color: #434C5E; /* 禁用时的颜色 */
+    color: #6a758c;
+    border: 1px solid #434C5E;
+}
+
+
+/* === 文本编辑区样式 (用于显示结果) === */
+QTextEdit {
+    background-color: #2E3440;
+    border: 1px solid #4C566A;
+    border-radius: 4px;
+    color: #D8DEE9;
+}
+
+/* === 标签样式 (用于显示图片) === */
+QLabel {
+    background-color: #242933; /* 更深的背景，突出图片 */
+    border: 1px solid #434C5E;
+    border-radius: 4px;
+}
+
+/* === 切分窗口的分割条样式 === */
+QSplitter::handle {
+    background-color: #4C566A;
+    border: none;
+}
+
+QSplitter::handle:hover {
+    background-color: #5E81AC;
+}
+
+QSplitter::handle:pressed {
+    background-color: #81A1C1;
+}
