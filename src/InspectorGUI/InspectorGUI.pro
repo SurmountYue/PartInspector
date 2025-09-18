@@ -103,3 +103,4 @@ RESOURCES += \
     Resources/resources.qrc
 
 DISTFILES +=
+TRANSLATIONS += InspectorGUI_zh_CN.ts

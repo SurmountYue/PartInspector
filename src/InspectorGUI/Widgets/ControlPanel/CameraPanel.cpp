@@ -51,17 +51,17 @@ void CameraPanel::setUiForConnectionStatus(bool connected)
     // 根据连接状态，设置控件的启用/禁用
     m_deviceComboBox->setEnabled(!connected);
     m_searchButton->setEnabled(!connected);
-    m_connectButton->setText(connected ? "Disconnect" : "Connect"); // 改变按钮文字
+    m_connectButton->setText(connected ? tr("Disconnect") : tr("Connect")); // 改变按钮文字
 
     m_singleShotButton->setEnabled(connected);
     m_continuousShotButton->setEnabled(connected);
     m_parameterGroupBox->setEnabled(connected);
 
     if (!connected) {
-        m_statusLabel->setText("Status: Disconnected");
+        m_statusLabel->setText(tr("Status: Disconnected"));
         m_continuousShotButton->setChecked(false); // 断开连接时，确保连续采集按钮弹起
     } else {
-        m_statusLabel->setText("Status: Connected");
+        m_statusLabel->setText(tr("Status: Connected"));
     }
 }
 
@@ -75,12 +75,12 @@ void CameraPanel::setupUi()
     m_mainLayout->setContentsMargins(10, 10, 10, 10);
 
     // --- 2. 创建“设备连接”分组 ---
-    m_deviceGroupBox = new QGroupBox("Device Connection", this);
+    m_deviceGroupBox = new QGroupBox(tr("Device Connection"), this);
 
     m_deviceComboBox = new QComboBox(this);
-    m_searchButton = new QPushButton("Search", this);
-    m_connectButton = new QPushButton("Connect", this);
-    m_statusLabel = new QLabel("Status: No Device", this);
+    m_searchButton = new QPushButton(tr("Search"), this);
+    m_connectButton = new QPushButton(tr("Connect"), this);
+    m_statusLabel = new QLabel(tr("Status: No Device"), this);
 
     QHBoxLayout* deviceTopLayout = new QHBoxLayout();
     deviceTopLayout->addWidget(m_deviceComboBox, 2); // 第2个参数是拉伸因子，让ComboBox更宽
@@ -98,9 +98,9 @@ void CameraPanel::setupUi()
 
 
     // --- 3. 创建“采集控制”分组 ---
-    m_acquisitionGroupBox = new QGroupBox("Acquisition Control", this);
-    m_singleShotButton = new QPushButton("Single Shot", this);
-    m_continuousShotButton = new QPushButton("Continuous Shot", this);
+    m_acquisitionGroupBox = new QGroupBox(tr("Acquisition Control"), this);
+    m_singleShotButton = new QPushButton(tr("Single Shot"), this);
+    m_continuousShotButton = new QPushButton(tr("Continuous Shot"), this);
     m_continuousShotButton->setCheckable(true); // 将此按钮设置为“可切换”状态（像开关一样）
 
     QHBoxLayout* acquisitionLayout = new QHBoxLayout();
@@ -111,7 +111,7 @@ void CameraPanel::setupUi()
 
 
     // --- 4. 创建“参数设置”分组 ---
-    m_parameterGroupBox = new QGroupBox("Parameters", this);
+    m_parameterGroupBox = new QGroupBox(tr("Parameters"), this);
     m_exposureSpinBox = new QSpinBox(this);
     m_exposureSpinBox->setRange(10, 100000); // 设置曝光范围 10μs - 100ms
     m_exposureSpinBox->setSuffix(" us");     // 设置单位后缀
@@ -123,8 +123,8 @@ void CameraPanel::setupUi()
 
     // 使用QFormLayout可以完美地将标签和输入框对齐
     QFormLayout* parameterLayout = new QFormLayout();
-    parameterLayout->addRow("Exposure:", m_exposureSpinBox);
-    parameterLayout->addRow("Gain:", m_gainSpinBox);
+    parameterLayout->addRow(tr("Exposure:"), m_exposureSpinBox);
+    parameterLayout->addRow(tr("Gain:"), m_gainSpinBox);
     m_parameterGroupBox->setLayout(parameterLayout);
 
 
@@ -148,7 +148,7 @@ void CameraPanel::setupConnections()
     // 对于“连接”按钮，逻辑稍微复杂
     connect(m_connectButton, &QPushButton::clicked, this, [this](){
         // 使用Lambda函数来根据按钮文字判断是连接还是断开
-        if (m_connectButton->text() == "Connect") {
+        if (m_connectButton->text() == tr("Connect")) {
             emit connectDeviceRequested(m_deviceComboBox->currentIndex());
         } else {
             emit disconnectDeviceRequested();

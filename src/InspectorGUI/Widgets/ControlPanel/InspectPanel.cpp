@@ -91,8 +91,8 @@ void InspectPanel::setupUi()
 {
     // --- 1. 创建所有UI控件的实例 ---
     // `this` 参数将当前 InspectPanel 对象设置为这些控件的父对象。
-    m_loadImageButton = new QPushButton("Load Image", this);
-    m_inspectButton = new QPushButton("Inspect", this);
+    m_loadImageButton = new QPushButton(tr("Load Image"), this);
+    m_inspectButton = new QPushButton(tr("Inspect"), this);
     m_resultsText = new QTextEdit(this);
 
     // 从资源系统(:/)加载图标并设置给按钮

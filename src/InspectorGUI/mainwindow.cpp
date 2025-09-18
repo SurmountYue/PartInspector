@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 设置窗口的初始大小和标题
     resize(1280, 800);
-    setWindowTitle("Part Inspector Pro");
+    setWindowTitle(tr("Part Inspector Pro"));
 
     // 【关键】安装并启动我们的全局日志系统
     LogManager::Instance()->install();
@@ -93,7 +93,7 @@ void MainWindow::setupUi()
     this->setCentralWidget(m_mainSplitter);
 
     // --- 4. 创建一个状态栏，用于在窗口底部显示临时信息 ---
-    this->statusBar()->showMessage("Ready. Please connect a camera or load an image.");
+    this->statusBar()->showMessage(tr("Ready. Please connect a camera or load an image."));
 }
 
 void MainWindow::setupConnections()
@@ -168,7 +168,7 @@ void MainWindow::onInspectRequested()
         return;
     }
     m_inspectPanel->setInspectButtonEnabled(false);
-    statusBar()->showMessage("Inspecting, please wait...");
+    statusBar()->showMessage(tr("Inspecting, please wait..."));
     qInfo("Inspection started...");
     m_inspectorThread->inspectImage(m_currentCvImage);
 }
@@ -225,7 +225,7 @@ void MainWindow::onGainChanged(double value)
 void MainWindow::onInspectionFinished(const InspectorLib::MeasurementResults& results, const QImage& resultImage)
 {
     qInfo("Inspection finished successfully.");
-    statusBar()->showMessage("Inspection successful.", 5000); // 状态栏信息显示5秒
+    statusBar()->showMessage(tr("Inspection successful."), 5000); // 状态栏信息显示5秒
     m_resultImageView->setImage(resultImage);
     m_inspectPanel->displayResults(results);
     m_inspectPanel->setInspectButtonEnabled(true);

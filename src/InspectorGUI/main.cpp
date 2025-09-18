@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QStyleFactory>  // 包含 QStyleFactory，用于设置漂亮的界面风格
 #include <QFile>
+#include <QTranslator>
+#include <QLocale>
 
 int main(int argc, char *argv[])
 {
@@ -14,8 +16,20 @@ int main(int argc, char *argv[])
     // b. (推荐) 设置一个跨平台的统一视觉风格
     //    "fusion" 是Qt提供的一种现代、美观的风格，能让您的应用在Windows/macOS/Linux上看起来都一样。
     //    这比使用操作系统的默认老旧样式要好得多。
-
     // a.setStyle(QStyleFactory::create("fusion"));
+
+    // --- 加载翻译文件 ---
+    QTranslator translator;
+    // 我们假设您已经把 .qm 文件添加到了资源文件 .qrc 中，并放在了 Translations 目录下
+    if (translator.load(":/translation/InspectorGUI_zh_CN.qm")) {
+        a.installTranslator(&translator);
+    } else {
+        // 如果加载失败，在控制台打印一个警告，方便调试
+        qWarning("Could not load translation file ':/Translations/InspectorGUI_zh_CN.qm'");
+    }
+
+
+
     QFile styleFile(":/Styles/ModernDark.qss"); // 通过资源路径":/"访问qss文件
     if (styleFile.open(QFile::ReadOnly | QFile::Text))
     {
